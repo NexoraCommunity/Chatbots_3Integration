@@ -13,7 +13,7 @@ interface ButtonProps {
 const Button = ({ label, variant = "primary", moveTo, fullWidth }: ButtonProps) => {
   const router = useRouter();
 
-  const baseStyles = "text-lg font-bold rounded-full flex justify-center items-center p-3 transition active:scale-95";
+  const baseStyles = "text-lg font-bold rounded-full flex justify-center items-center p-3 transition active:scale-95 cursor-pointer";
 
   const variants = {
     primary: "bg-[#27C5FF] text-white",
