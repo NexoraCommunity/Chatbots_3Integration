@@ -2,6 +2,7 @@
 import { SideBarItems } from "./SideBarItems";
 import { Icon } from "@iconify/react";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const botMenu = [
   {
@@ -32,13 +33,7 @@ const botMenu = [
   },
   {
     label: "AI & Analytic",
-    icon: (
-      <Icon
-        icon="ri:file-ai-fill"
-        width="24"
-        height="24"
-      />
-    ),
+    icon: <Icon icon="ri:file-ai-fill" width="24" height="24" />,
     href: "/ai-analytic",
   },
 ];
@@ -46,22 +41,28 @@ const botMenu = [
 const salesMenu = [
   {
     label: "Product Manager",
-    icon: <Icon icon="ix:product" width="24" height="24"/>,
+    icon: <Icon icon="ix:product" width="24" height="24" />,
     href: "/product-manager",
   },
   {
     label: "Payments",
-    icon: <Icon icon="material-symbols:payment-arrow-down-outline-rounded" width="24" height="24"/>,
+    icon: (
+      <Icon
+        icon="material-symbols:payment-arrow-down-outline-rounded"
+        width="24"
+        height="24"
+      />
+    ),
     href: "/payment",
   },
   {
     label: "Sales Monitoring",
-    icon: <Icon icon="grommet-icons:shop" width="24" height="24"/>,
+    icon: <Icon icon="grommet-icons:shop" width="24" height="24" />,
     href: "/sales-monitoring",
   },
   {
     label: "Customer",
-    icon: <Icon icon="famicons:people" width="24" height="24"/>,
+    icon: <Icon icon="famicons:people" width="24" height="24" />,
     href: "/customer",
   },
 ];
@@ -69,18 +70,30 @@ const salesMenu = [
 const mainMenu = [
   {
     label: "Settings",
-    icon: <Icon icon="material-symbols:settings" width="24" height="24"/>,
+    icon: <Icon icon="material-symbols:settings" width="24" height="24" />,
     href: "/settings",
   },
   {
     label: "Notification",
-    icon: <Icon icon="iconamoon:notification-fill" width="24" height="24"/>,
+    icon: <Icon icon="iconamoon:notification-fill" width="24" height="24" />,
     href: "/notification",
   },
 ];
 
+const integrationSubMenu = [
+  { label: "Whatsapp", href: "/wa" },
+  { label: "Telegram", href: "/tele" },
+  { label: "Website", href: "/web" },
+];
+
+// Page
 const SideBar = () => {
   const activePath = usePathname();
+  const [openIntegration, setOpenIntregation] = useState(false);
+
+  useEffect(() => {
+    setOpenIntregation(activePath === "/Integration");
+  }, [activePath]);
 
   return (
     <div className="h-screen w-64 p-4 overflow-y-scroll">
@@ -90,15 +103,44 @@ const SideBar = () => {
       </div>
       <div>
         <h3 className="font-bold text-[#655E5E]">Bot Menu</h3>
-        {botMenu.map((item) => (
-          <SideBarItems
-            key={item.href}
-            label={item.label}
-            href={item.href}
-            icon={item.icon}
-            active={activePath === item.href}
-          />
-        ))}
+        {botMenu.map((item) => {
+          if (item.label === "Integration") {
+            return (
+              <div key={item.href}>
+                <SideBarItems
+                  label={item.label}
+                  href={item.href}
+                  icon={item.icon}
+                  toggle
+                  isOpen={openIntegration}
+                  active={activePath === "/Integration"}
+                  onToggle={() => setOpenIntregation(!openIntegration)}
+                />
+                {openIntegration && (
+                  <div className="ml-8 flex flex-col">
+                    {integrationSubMenu.map((sub) => (
+                      <SideBarItems
+                        key={sub.href}
+                        label={sub.label}
+                        href={sub.href}
+                        active={activePath === sub.href}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            );
+          }
+          return (
+            <SideBarItems
+              key={item.href}
+              label={item.label}
+              href={item.href}
+              icon={item.icon}
+              active={activePath === item.href}
+            />
+          );
+        })}
       </div>
       <div>
         <h3 className="font-bold text-[#655E5E]">Sales Menu</h3>

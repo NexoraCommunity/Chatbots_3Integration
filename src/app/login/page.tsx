@@ -13,6 +13,12 @@ const Page = () => {
     await GoogleOauth();
   };
 
+  const handleClickFb = async () => {
+    const data = await fetch("https://chatbots3integration-backend-production.up.railway.app/api/bot", { credentials: "include" })
+
+    console.log(await data.json())
+  }
+
   return (
     <div className="flex w-full h-full items-center overflow-hidden">
       {/* left side */}
@@ -72,7 +78,9 @@ const Page = () => {
                 />
               </div>
               <div className="w-10 h-10 text-xl text-white bg-[#1877F2] rounded-full flex justify-center items-center cursor-pointer">
-                <Icon icon="bxl:facebook" />
+                <Icon 
+                onClick={handleClickFb} 
+                icon="bxl:facebook" />
               </div>
             </div>
           </div>
