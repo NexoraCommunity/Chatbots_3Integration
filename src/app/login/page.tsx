@@ -14,7 +14,7 @@ const Page = () => {
   };
 
   const handleClickFb = async () => {
-    const data = await fetch("https://chatbots3integration-backend-production.up.railway.app/api/bot", { credentials: "include" })
+    const data = await fetch("https://chatbots3integration-backend-production.up.railway.app/api/bot/prompts", { credentials: "include" })
 
     console.log(await data.json())
   }
