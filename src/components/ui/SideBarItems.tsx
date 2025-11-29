@@ -44,7 +44,7 @@ export function SideBarItems({
         animate={{
           x: isActiveNow ? 10 : 0,
         }}
-        transition={{ type: "keyframes", duration: 0.2 }}
+        transition={{ type: "spring", stiffness: 200, duration: 0.2 }}
         href={href}
         className={baseClass}
       >
