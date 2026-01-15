@@ -12,9 +12,9 @@ const botMenu = [
     href: "/dashboard",
   },
   {
-    label: "Prompting",
+    label: "Agent",
     icon: <Icon icon="mingcute:edit-2-fill" width="16" height="16" />,
-    href: "/prompting",
+    href: "/agent",
   },
   {
     label: "Bot Builder",
@@ -139,7 +139,7 @@ const SideBar = () => {
               label={item.label}
               href={item.href}
               icon={item.icon}
-              active={activePath === item.href}
+              active={activePath.includes(item.href)}
              
             />
           );

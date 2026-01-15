@@ -13,11 +13,11 @@ const Page = () => {
     await GoogleOauth();
   };
 
-  const handleClickFb = async () => {
-    const data = await fetch("https://chatbots3integration-backend-production.up.railway.app/api/admin/prompt", { credentials: "include" })
+  // const handleClickFb = async () => {
+  //   const data = await fetch("https://chatbots3integration-backend-production.up.railway.app/api/admin/prompt", { credentials: "include" })
 
-    console.log(await data.json())
-  }
+  //   console.log(await data.json())
+  // }
 
   return (
     <div className="flex w-full h-full items-center overflow-hidden">
@@ -37,12 +37,13 @@ const Page = () => {
 
           {/* form */}
           <form action="">
-            <div className="w-[400px] h-auto flex flex-col justify-center items-center gap-2 p-5 bg-[#F4FFFD] border rounded-3xl border-gray-400 text-[#575555]">
+            <div className="w-[400px] h-auto flex flex-col justify-center items-center gap-2 p-5 bg-[#F4FFFD] border rounded-2xl border-gray-400 text-[#575555]">
               <div className="w-full">
                 <p className="text-xs place-self-start ml-2 mb-1.5">
                   Email address
                 </p>
                 <Input
+                  prefix="test"
                   placeholder="Masukan email"
                   type="email"
                   variant="primary"
@@ -77,11 +78,11 @@ const Page = () => {
                   height="20"
                 />
               </div>
-              <div className="w-10 h-10 text-xl text-white bg-[#1877F2] rounded-full flex justify-center items-center cursor-pointer">
+              {/* <div className="w-10 h-10 text-xl text-white bg-[#1877F2] rounded-full flex justify-center items-center cursor-pointer">
                 <Icon 
                 onClick={handleClickFb} 
                 icon="bxl:facebook" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

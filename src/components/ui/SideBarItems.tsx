@@ -44,11 +44,11 @@ export function SideBarItems({
         animate={{
           x: isActiveNow ? 10 : 0,
         }}
-        transition={{ type: "spring", stiffness: 200, duration: 0.2 }}
+        transition={{ type: "keyframes", stiffness: 200, duration: 0.2 }}
         href={href}
         className={baseClass}
       >
-        <div className="flex items-center gap-3 flex-1 select-none">
+        <div className="flex items-center gap-3 flex-1 select-none ml-4">
           {icon}
           <span>{label}</span>
         </div>
@@ -59,7 +59,7 @@ export function SideBarItems({
             onToggle?.();
           }}
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.7 }}
           className="p-1"
         >
           <Icon icon="mdi:chevron-up" width="20" height="20" />
@@ -78,7 +78,7 @@ export function SideBarItems({
       href={href || "#"}
       className={baseClass}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 ml-4">
         {icon}
         <span>{label}</span>
       </div>

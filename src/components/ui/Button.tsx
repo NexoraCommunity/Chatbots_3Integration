@@ -1,24 +1,37 @@
 "use client";
 
-import React from "react";
 import { useRouter } from "next/navigation";
+import { ReactNode } from "react";
 
 interface ButtonProps {
   label: string;
-  variant?: "primary" | "secondary" | "default";
+  variant?: "primary" | "secondary" | "default" | "custom";
   moveTo?: string;
   fullWidth?: boolean;
+  icon?: ReactNode;
+  iconPosition?: "left" | "right"
+  className?: string;
 }
 
-const Button = ({ label, variant = "primary", moveTo, fullWidth }: ButtonProps) => {
+const Button = ({
+  label,
+  variant = "primary",
+  moveTo,
+  fullWidth,
+  icon,
+  iconPosition,
+  className
+}: ButtonProps) => {
   const router = useRouter();
 
-  const baseStyles = "text-lg font-bold rounded-full flex justify-center items-center p-3 transition active:scale-95 cursor-pointer";
+  const baseStyles =
+    "text-lg flex justify-center items-center transition active:scale-95 cursor-pointer";
 
   const variants = {
-    primary: "bg-[#27C5FF] text-white",
-    secondary: "bg-gray-300 text-white",
-    default: "text-[#01D2B3]",
+    primary: "bg-[#27C5FF] p-3 text-white rounded-xl",
+    secondary: "bg-gray-300 text-[#655E5E] rounded-xl",
+    default: "p-3 rounded-xl border",
+    custom: "",
   };
 
   const handleMoveTo = () => {
@@ -30,9 +43,11 @@ const Button = ({ label, variant = "primary", moveTo, fullWidth }: ButtonProps) 
       onClick={handleMoveTo}
       className={`${baseStyles} ${variants[variant]} ${
         fullWidth ? "w-full" : ""
-      }`}
+      }${className ?? ""}`}
     >
-      {label}
+      {icon && iconPosition === "left" && icon}
+      <span>{label}</span>
+      {icon && iconPosition === "right" && icon}
     </button>
   );
 };

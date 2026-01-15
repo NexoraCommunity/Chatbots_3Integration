@@ -94,9 +94,9 @@ const Page = () => {
                   height="20"
                 />
               </div>
-              <div className="w-10 h-10 text-xl text-white bg-[#1877F2] rounded-full flex justify-center items-center cursor-pointer">
+              {/* <div className="w-10 h-10 text-xl text-white bg-[#1877F2] rounded-full flex justify-center items-center cursor-pointer">
                 <Icon icon="bxl:facebook" />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
