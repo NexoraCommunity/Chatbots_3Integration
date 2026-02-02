@@ -7,9 +7,8 @@ import { ReactNode } from "react";
 interface SideBarItemProps {
   label: string;
   icon?: ReactNode;
-  href: string;
+  href?: string;
   active?: boolean;
-
   toggle?: boolean;
   isOpen?: boolean;
   onToggle?: () => void; // klik icon panah
@@ -42,8 +41,11 @@ export function SideBarItems({
     return (
       <MotionLink
         transition={{ type: "keyframes", stiffness: 200, duration: 0.2 }}
-        href={href}
         className={baseClass}
+        href={href}
+        onClick={() => {
+          if (toggle) onToggle?.();
+        }}
       >
         <div className="flex items-center gap-3 flex-1 select-none ml-4">
           {icon}

@@ -2,7 +2,7 @@
 
 interface InputProps {
   placeholder: string;
-  variant?: "primary" | "secondary" | "default" | "custom";
+  variant?: "primary" | "secondary" | "default" | "custom" | "miniDefault";
   type?: "text" | "password" | "email" | "file";
   icon?: string;
   className?: string;
@@ -19,16 +19,17 @@ const Input = ({
 }: InputProps) => {
   const variants = {
     primary:
-      "text-gray-500 rounded-xl border border-gray-[#575555] focus:outline-none focus:border-none focus:ring-2 focus:ring-[#01D2B3] p-5",
-    secondary: "text-gray-500 rounded-xl border border-[#575555] focus:outline-none focus:border-none focus:ring-2 focus:ring-[#01D2B3] p-4",
-    default: "focus:outline-none focus:border-none m-3",
+      "text-gray-500 rounded-xl border border-gray-[#575555] focus:outline-none focus:border-none focus:ring-2 focus:ring-[#01D2B3] p-5 h-15",
+    secondary: "text-gray-500 rounded-xl border border-[#575555] focus:outline-none focus:border-none focus:ring-2 focus:ring-[#01D2B3] p-4 h-15",
+    default: "focus:outline-none focus:border-none h-15",
+    miniDefault: "focus:outline-none focus:border-none",
     custom: "",
   };
   return (
     <input
       type={type}
       placeholder={placeholder}
-      className={`${variants[variant]} w-full h-15 ${className}`}
+      className={`${variants[variant]} w-full ${className}`}
       onChange={onchange}
       required={required}
     />

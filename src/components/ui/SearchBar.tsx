@@ -5,7 +5,7 @@ import { Input } from './Input'
 interface SearchBarProps {
   placeholder?: string;
   className?: string;
-  variant?: 'primary' | 'secondary' | 'default' | 'custom';
+  variant?: 'primary' | 'secondary' | 'default' | 'miniDefault' | 'custom';
 }
 
 const SearchBar = ({ placeholder, className, variant = "primary" }: SearchBarProps) => {

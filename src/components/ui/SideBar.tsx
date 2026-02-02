@@ -25,7 +25,7 @@ const botMenu = [
         height="16"
       />
     ),
-    href: "/integration",
+    href: "/integration/activation",
   },
   {
     label: "AI & Analytic",
@@ -77,6 +77,7 @@ const mainMenu = [
 ];
 
 const integrationSubMenu = [
+  { labelSub: "Activation", subHref: "/integration/activation" },
   { labelSub: "Whatsapp", subHref: "/integration/whatsapp" },
   { labelSub: "Telegram", subHref: "/integration/telegram" },
   { labelSub: "LLM", subHref: "/integration/llm" },
@@ -89,17 +90,15 @@ const SideBar = () => {
   const [openIntegration, setOpenIntregation] = useState(false);
 
   useEffect(() => {
-    setOpenIntregation(activePath === "/integration");
+    setOpenIntregation(activePath.startsWith("/integration"));
   }, [activePath]);
 
   return (
     <div className="fixed flex flex-col h-screen w-69 bg-linear-to-b from-[#FFFFFF] to-[#F6F6F6]">
-        <div className="ml-9 flex items-center gap-4 text-[#01D2B3] m-5">
-          <Icon icon="mingcute:robot-fill" width="30" height="30" />
-          <h2 className="font-semibold text-2xl">
-            Nexchatbot
-          </h2>
-        </div>
+      <div className="ml-9 flex items-center gap-4 text-[#01D2B3] m-5">
+        <Icon icon="mingcute:robot-fill" width="30" height="30" />
+        <h2 className="font-semibold text-2xl">Nexchatbot</h2>
+      </div>
       <div className="grow px-5 overflow-y-auto scrollbar-hide">
         <div>
           <h3 className="font-semibold ml-4 text-[#6862624D]">Main Menu</h3>
@@ -117,7 +116,7 @@ const SideBar = () => {
         <div>
           <h3 className="font-semibold ml-4 text-[#6862624D]">Bot Menu</h3>
           {botMenu.map((item) => {
-            if (item.href === "/integration") {
+            if (item.label === "Integration") {
               return (
                 <div key={item.href}>
                   <SideBarItems
@@ -125,20 +124,24 @@ const SideBar = () => {
                     href={item.href}
                     icon={item.icon}
                     toggle
+                    active={openIntegration}
                     isOpen={openIntegration}
-                    active={activePath === "/integration"}
-                    onToggle={() => setOpenIntregation(!openIntegration)}
+                    onToggle={() => {
+                      setOpenIntregation((prev) => !prev);
+                    }}
                   />
                   {openIntegration && (
                     <div className="ml-8 flex flex-col gap-3.5">
-                      {integrationSubMenu.map((sub) => (
-                        <SubSideBarItems
-                          key={sub.subHref}
-                          labelSub={sub.labelSub}
-                          subHref={sub.subHref}
-                          active={activePath === sub.subHref}
-                        />
-                      ))}
+                      {integrationSubMenu.map((sub) => {
+                        return (
+                          <SubSideBarItems
+                            key={sub.subHref}
+                            labelSub={sub.labelSub}
+                            subHref={sub.subHref}
+                            active={activePath.includes(sub.subHref)}
+                          />
+                        );
+                      })}
                     </div>
                   )}
                 </div>
@@ -158,15 +161,17 @@ const SideBar = () => {
         {/* Main Menu */}
         <div>
           <h3 className="font-semibold ml-4 text-[#6862624D]">Sales Menu</h3>
-          {salesMenu.map((item) => (
-            <SideBarItems
-              key={item.href}
-              label={item.label}
-              href={item.href}
-              icon={item.icon}
-              active={activePath === item.href}
-            />
-          ))}
+          {salesMenu.map((item) => {
+            return (
+              <SideBarItems
+                key={item.href}
+                label={item.label}
+                href={item.href}
+                icon={item.icon}
+                active={activePath === item.href}
+              />
+            );
+          })}
         </div>
       </div>
 
@@ -181,12 +186,13 @@ const SideBar = () => {
             />
           </span>
           <div className="flex flex-col">
-          <p className="text-sm font-medium">Bayu Skak</p>
-          <p className="text-xs text-[#A3A3A3]">Free(gamodal)</p>
-
+            <p className="text-sm font-medium">Bayu Skak</p>
+            <p className="text-xs text-[#A3A3A3]">Free(gamodal)</p>
           </div>
         </div>
-        <p className="text-sm text-[#767373] px-2 py-1 border rounded-lg">Upgrade</p>
+        <p className="text-sm text-[#767373] px-2 py-1 border rounded-lg">
+          Upgrade
+        </p>
       </div>
     </div>
   );
