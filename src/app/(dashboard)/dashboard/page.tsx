@@ -7,7 +7,7 @@ const page = () => {
   return (
     <div>
       {/* Statistik */}
-      <div className="grid grid-cols-3 gap-5 text-[#655E5E]">
+      <div className="grid grid-cols-4 gap-5 text-[#655E5E]">
         <div className="flex flex-col justify-between rounded-lg w-full h-50 bg-white shadow p-5 hover:bg-linear-to-r from-[#61EFDA] to-[#98FFF0] cursor-pointer">
           <div className="flex gap-4 items-center">
             <span className="bg-white rounded-xl w-10 h-10 flex justify-center items-center">
@@ -19,25 +19,42 @@ const page = () => {
         </div>
         <div className="flex flex-col justify-between rounded-lg w-full h-50 bg-white shadow p-5 hover:bg-linear-to-r from-[#61EFDA] to-[#98FFF0] cursor-pointer">
           <div className="flex gap-4 items-center">
-            <Icon
-              icon="material-symbols:interactive-space"
-              width={20}
-              className="bg-white rounded-xl"
-            />
+            <span className="bg-white rounded-xl w-10 h-10 flex justify-center items-center">
+              <Icon
+                icon="material-symbols:interactive-space"
+                width={20}
+                className="bg-white rounded-xl"
+              />
+            </span>
             <p>Total Agent</p>
           </div>
           <p className="text-[40px]">5 Agent</p>
         </div>
         <div className="flex flex-col justify-between rounded-lg w-full h-50 bg-white shadow p-5 hover:bg-linear-to-r from-[#61EFDA] to-[#98FFF0] cursor-pointer">
           <div className="flex gap-4 items-center">
-            <Icon
-              icon="tabler:message-filled"
-              width={20}
-              className="bg-white rounded-xl"
-            />
+            <span className="bg-white rounded-xl w-10 h-10 flex justify-center items-center">
+              <Icon
+                icon="tabler:message-filled"
+                width={20}
+                className="bg-white rounded-xl"
+              />
+            </span>
             <p>Total Pesan</p>
           </div>
           <p className="text-[40px]">250 Pesan</p>
+        </div>
+        <div className="flex flex-col justify-between rounded-lg w-full h-50 bg-white shadow p-5 hover:bg-linear-to-r from-[#61EFDA] to-[#98FFF0] cursor-pointer">
+          <div className="flex gap-4 items-center">
+            <span className="bg-white rounded-xl w-10 h-10 flex justify-center items-center">
+              <Icon
+                icon="streamline-ultimate:monetization-touch-coin-bold"
+                width={20}
+                className="bg-white rounded-xl"
+              />
+            </span>
+            <p>Penggunaan Token</p>
+          </div>
+          <p className="text-[40px]">970 Token</p>
         </div>
       </div>
 
