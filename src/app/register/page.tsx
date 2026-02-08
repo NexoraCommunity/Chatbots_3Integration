@@ -6,17 +6,24 @@ import { SwitchTabs } from "@/src/components/SwitchTabs";
 import { Icon } from "@iconify/react";
 import { useState } from "react";
 import { RegisterProps } from "@/src/model/authentication.model";
-import { Register } from "@/src/services/api-auth/authentication.route";
+import { useAuthStore } from "@/src/store/auth.store";
 
 const Page = () => {
   const router = useRouter();
-  const [register, setRegister] = useState<RegisterProps>({ firstName: '', lastName: '', email: '', password: '' });
+  const { register, isLoading } = useAuthStore();
+  const [error, setError] = useState();
+  const [dataRegister, setDataRegister] = useState<RegisterProps>({ firstName: '', lastName: '', email: '', password: '' });
 
-  const handleOnSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
+  const handleOnSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await Register(register);
-    if(data){
-      console.log("Register successful", data);
+    try {
+      const response = await register(dataRegister);
+      if (response) {
+        console.log(response)
+      }
+
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -48,14 +55,14 @@ const Page = () => {
                     placeholder="First Name"
                     type="text"
                     variant="secondary"
-                    onChange={(e) => setRegister({...register, firstName: e.target.value})}
+                    onChange={(e) => setDataRegister({ ...dataRegister, firstName: e.target.value })}
                     required
                   />
                   <Input
                     placeholder="Last Name"
                     type="text"
                     variant="secondary"
-                    onChange={(e) => setRegister({...register, lastName: e.target.value})}
+                    onChange={(e) => setDataRegister({ ...dataRegister, lastName: e.target.value })}
                     required
                   />
                 </div>
@@ -68,7 +75,7 @@ const Page = () => {
                   placeholder="Email address"
                   type="email"
                   variant="secondary"
-                  onChange={(e) => setRegister({...register, email: e.target.value})}
+                  onChange={(e) => setDataRegister({ ...dataRegister, email: e.target.value })}
                   required
                 />
               </div>
@@ -80,7 +87,7 @@ const Page = () => {
                   placeholder="Password"
                   type="password"
                   variant="secondary"
-                  onChange={(e) => setRegister({...register, password: e.target.value})}
+                  onChange={(e) => setDataRegister({ ...dataRegister, password: e.target.value })}
                   required
                 />
               </div>
@@ -97,7 +104,7 @@ const Page = () => {
             </div>
 
             <div className="mt-5">
-              <Button label="Continue" variant="primary" fullWidth/>
+              <Button label="Continue" variant="primary" fullWidth />
             </div>
           </form>
           {/* Another Login */}
